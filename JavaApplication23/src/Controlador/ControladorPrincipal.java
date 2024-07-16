@@ -23,6 +23,7 @@ public class ControladorPrincipal {
             this.instituciones = leerInstituciones(archivo);
         } catch (IOException e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
+            ControladorErrores.guardarError("Error al leer el archivo: " + e.getMessage());
         }
     }
     //opciones de menu principal

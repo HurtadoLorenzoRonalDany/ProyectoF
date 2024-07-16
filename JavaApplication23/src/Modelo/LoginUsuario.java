@@ -4,6 +4,7 @@
  */
 package Modelo;
 
+import Controlador.ControladorErrores;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class LoginUsuario {
     public LoginUsuario() {
         this.scanner = new Scanner(System.in);
     }
-    //revision de elementos del login
+    //Revision de elementos del login
     public boolean iniciarSesion() {
         int intentos = 0;
         boolean exito = false;
@@ -40,11 +41,11 @@ public class LoginUsuario {
             }
         }
         if (!exito) {
-            System.out.println("Ha superado el número máximo de intentos. Saliendo del programa.");
+            System.out.println("Ha superado el numero maximo de intentos. Usuario bloqueado.");
         }
         return exito;
     }
-    //validador de credenciales
+    //Validador de credenciales
     private boolean validarCredenciales(String usuario, String contrasena) {
         try (BufferedReader br = new BufferedReader(new FileReader(ARCHIVO_USUARIOS))) {
             String linea;
@@ -60,6 +61,7 @@ public class LoginUsuario {
             }
         } catch (IOException e) {
             System.out.println("Error al leer el archivo de usuarios: " + e.getMessage());
+            ControladorErrores.guardarError("Error al leer el archivo: " + e.getMessage());
         }
         return false;
     }

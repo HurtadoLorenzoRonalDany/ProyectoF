@@ -5,7 +5,6 @@
 package Controlador;
 
 import Modelo.Instituciones;
-import Modelo.InstitucionesOrdenador;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -18,16 +17,16 @@ public class ControladorReportes {
     public static void imprimirReporte(Instituciones[] instituciones, String criterioOrdenamiento) {
         //formato de ordenamiento y encabezado de la lista
         if (criterioOrdenamiento.equals("nivelModalidad")) {
-            InstitucionesOrdenador.ordenarPorNivelModalidad(instituciones);
+            OrdenadorInstituciones.ordenarPorNivelModalidad(instituciones);
             System.out.println("Numero         Nivel de modalidad                     Instituciones educativas");
         } else if (criterioOrdenamiento.equals("cantAlumnos")) {
-            InstitucionesOrdenador.ordenarPorCantAlumnos(instituciones);
+            OrdenadorInstituciones.ordenarPorCantAlumnos(instituciones);
             System.out.println("Numero  Cantidad de alumnos          Instituciones educativas");
         } else if (criterioOrdenamiento.equals("tipoGestion")) {
-            InstitucionesOrdenador.ordenarPorTipoGestion(instituciones);
+            OrdenadorInstituciones.ordenarPorTipoGestion(instituciones);
             System.out.println("Numero           Tipo de gestion              Cantidad de alumnos");
         } else if (criterioOrdenamiento.equals("numAulas")) {
-            InstitucionesOrdenador.ordenarPorNumAulas(instituciones);
+            OrdenadorInstituciones.ordenarPorNumAulas(instituciones);
             System.out.println("Numero  Numero de aulas          Instituciones educativas");
         }
         //formato de la lista
@@ -50,16 +49,16 @@ public class ControladorReportes {
     public static void exportarReporte(Instituciones[] instituciones, String criterioOrdenamiento) {
         //formato de ordenamiento
         if (criterioOrdenamiento.equals("nivelModalidad")) {
-            InstitucionesOrdenador.ordenarPorNivelModalidad(instituciones);
+            OrdenadorInstituciones.ordenarPorNivelModalidad(instituciones);
         } else if (criterioOrdenamiento.equals("cantAlumnos")) {
-            InstitucionesOrdenador.ordenarPorCantAlumnos(instituciones);
+            OrdenadorInstituciones.ordenarPorCantAlumnos(instituciones);
         } else if (criterioOrdenamiento.equals("tipoGestion")) {
-            InstitucionesOrdenador.ordenarPorTipoGestion(instituciones);
+            OrdenadorInstituciones.ordenarPorTipoGestion(instituciones);
         } else if (criterioOrdenamiento.equals("numAulas")) {
-            InstitucionesOrdenador.ordenarPorNumAulas(instituciones);
+            OrdenadorInstituciones.ordenarPorNumAulas(instituciones);
         }
         //formato de encabezado
-        try (FileWriter writer = new FileWriter("C:\\Users\\Computer\\Downloads\\reporte.txt")) {
+        try (FileWriter writer = new FileWriter("reporte.txt")) {
             if (criterioOrdenamiento.equals("nivelModalidad")) {
                 writer.append("Numero         Nivel de modalidad                        Instituciones educativas\n");
             } else if (criterioOrdenamiento.equals("cantAlumnos")) {
@@ -85,7 +84,7 @@ public class ControladorReportes {
                 }
             }
             writer.close();
-            System.out.println("El reporte ha sido exportado a: C:\\Users\\Computer\\Downloads\\reporte.txt");
+            System.out.println("El reporte ha sido exportado a: reporte.txt");
         } catch (IOException e) {
             System.out.println("Error al exportar el archivo: " + e.getMessage());
         }
